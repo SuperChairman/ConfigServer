@@ -40,5 +40,5 @@ target
 mvnw
 mvnw.cmd
 
-/**/resources/bootstrap-dev.yml
+*-dev.yml
 

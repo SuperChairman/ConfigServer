@@ -1,0 +1,46 @@
+server:
+    port: 8888
+
+spring:
+  application:
+      name: configServer
+  profiles:
+     active: ${SPRING_PROFILES_ACTIVE:master}
+  cloud:
+    inetutils:
+      timeout-seconds: 60
+    config:
+      server:
+        git:
+          search-paths: /depot
+          uri: https://github.com/SuperChairman/Register.git
+          username: ${github.username}
+          password: ${github.password}
+          force-pull: true
+          basedir: ${github.basedir}
+    bus:
+      trace:
+        enabled: true
+  security:
+    user:
+      name: user
+      password: ${CONFIG_SERVICE_PASSWORD:111111}
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://eureka.local.master:8761/eureka/, http://eureka.local.slave:8762/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  level:
+    com.sogal: DEBUG
+  file: .log/config.log
+
