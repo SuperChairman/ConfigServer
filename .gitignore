@@ -40,9 +40,5 @@ target
 mvnw
 mvnw.cmd
 
-/**/resources/depot/
-/**/resources/.git/
 /**/resources/bootstrap-dev.yml
-/**/resources/.gitignore
-/**/resources/README.md
 
