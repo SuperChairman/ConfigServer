@@ -3,9 +3,9 @@ server:
 
 spring:
   application:
-      name: configServer
+      name: config-server
   profiles:
-     active: ${SPRING_PROFILES_ACTIVE:master}
+     active: ${SPRING_PROFILES_ACTIVE}
   cloud:
     inetutils:
       timeout-seconds: 60
@@ -13,11 +13,12 @@ spring:
       server:
         git:
           search-paths: /depot
-          uri: https://github.com/SuperChairman/Register.git
+          uri: https://github.com/SuperChairman/ConfigFiles.git
           username: ${github.username}
           password: ${github.password}
           force-pull: true
           basedir: ${github.basedir}
+      label: master
     bus:
       trace:
         enabled: true
@@ -27,11 +28,9 @@ spring:
       password: ${CONFIG_SERVICE_PASSWORD:111111}
 
 eureka:
-  instance:
-    prefer-ip-address: true
   client:
     serviceUrl:
-      defaultZone: http://eureka.local.master:8761/eureka/, http://eureka.local.slave:8762/eureka/
+      defaultZone: http://eureka.local.master:8761/eureka/,http://eureka.local.slave:8762/eureka/
 
 management:
   endpoints:
